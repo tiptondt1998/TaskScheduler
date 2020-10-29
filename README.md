@@ -1,2 +1,0 @@
-# TaskScheduler
-task scheduling application
