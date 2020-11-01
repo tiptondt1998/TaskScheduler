@@ -1,11 +1,13 @@
 //document.onload(getTasks());
 var status = "toDo";
+document.onload(getTasks());
 var saveTasks = function(){
     var taskName = document.getElementById("taskName").value;
     var taskDescription = document.getElementById("taskDescription").value;
     var DueDate = document.getElementById("modalDueDate").value;
     var taskInfo = taskName + " " + taskDescription + " " + DueDate;
     localStorage.setItem(status,taskInfo);
+    getTasks();
 }
 document.getElementById("submit-btn").addEventListener("click", saveTasks);
 
@@ -130,3 +132,8 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+var remove_btn = document.getElementById("remove-btn");
+remove_btn.addEventListener("click", function(){
+  localStorage.clear();
+});
