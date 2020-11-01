@@ -1,6 +1,5 @@
 //document.onload(getTasks());
 var status = "toDo";
-document.onload(getTasks());
 var saveTasks = function(){
     var taskName = document.getElementById("taskName").value;
     var taskDescription = document.getElementById("taskDescription").value;
