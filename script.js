@@ -1,138 +1,153 @@
-//document.onload(getTasks());
-var status = "toDo";
-var saveTasks = function(){
-    var taskName = document.getElementById("taskName").value;
-    var taskDescription = document.getElementById("taskDescription").value;
-    var DueDate = document.getElementById("modalDueDate").value;
-    var taskInfo = taskName + " " + taskDescription + " " + DueDate;
-    localStorage.setItem(status,taskInfo);
-    getTasks();
-}
-document.getElementById("submit-btn").addEventListener("click", saveTasks);
+$(".saveBtn").on("click", function(event){
 
- function getTasks(){
-  let values = [],
-  keys = Object.keys(localStorage),
-  i=keys.length;
-  while(i--){
-    values.push(localStorage.getItem(keys[i]));
-  }
-  var getter = document.getElementById("toDo");
-  var getTask = localStorage.getItem("toDo");
-  var words = getTask.split(' ');
-  var word0 = words[0];
-  var word1 = words[1];
-  var word2 = words[2];
-  getter.innerHTML = "<p>" + word0 + "</p><p>" + word1 + "</p><p>" + word2 + "</p>";
-  getter.className = "card";
-  getter.setAttribute("id", "taskCard")
-  //document.getElementById("toDo").appendChild(getter);
-  console.log(document.getElementById("toDo"));
-  return values;
-}
-// Get the modal
-var modal = document.getElementById("myModal");
+  var timeBlock = $(this).parent().attr("id");
+  var value = $(this).siblings(".description").val();
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+  localStorage.setItem(timeBlock, value);
+  console.log(timeBlock, " ", value);
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+})
 
-// When the user clicks on the button, open the modal
-btn.addEventListener("click", function() {
-  modal.style.display = "block";
-  console.log("event listener")
-});
+var value9 = localStorage.getItem("hour-9");
+$("#hour-9 .description").val(value9);
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
+
+var currentHour= moment().hours();
+
+if (currentHour>9) {
+   $("#hour-9").addClass("past")
+} else if (currentHour<9){
+   $("#hour-9").addClass("future")
+} else {
+   $("#hour-9").addClass("present")
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+var value10 = localStorage.getItem("hour-10");
+$("#hour-10 .description").val(value10);
+
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
+
+var currentHour= moment().hours();
+
+if (currentHour>10) {
+   $("#hour-10").addClass("past")
+} else if (currentHour<9){
+   $("#hour-10").addClass("future")
+} else {
+   $("#hour-10").addClass("present")
 }
 
-$("#modalDueDate").datepicker({minDate: 1});
+var value11 = localStorage.getItem("hour-11");
+$("#hour-11 .description").val(value11);
 
-$(".list-group").on("click", "span", function() {
-  // get current text
-  var date = $(this).text().trim();
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
 
-  // create new input element
-  var dateInput = $("<input>").attr("type", "text").addClass("form-control").val(date);
+var currentHour= moment().hours();
 
-  $(this).replaceWith(dateInput);
-
-  // enable jquery ui datepicker
-  dateInput.datepicker({
-    minDate: 1
-  });
-
-  // automatically bring up the calendar
-  dateInput.trigger("focus");
-});
-
-// get current date
-var currentDate = new Date();
-
-// set how many days from now we want
-var daysFromNow = 2;
-
-// get date two days from now
-var twoDaysFromNow = new Date(currentDate.setDate(currentDate.getDate() + daysFromNow));
-
-//draggable
-
-// Make the DIV element draggable:
-dragElement(document.getElementById("taskCard"));
-
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "taskCard")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "taskCard").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
-
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
+if (currentHour>11) {
+   $("#hour-11").addClass("past")
+} else if (currentHour<11){
+   $("#hour-11").addClass("future")
+} else {
+   $("#hour-11").addClass("present")
 }
 
-var remove_btn = document.getElementById("remove-btn");
-remove_btn.addEventListener("click", function(){
-  localStorage.clear();
-});
+var value12 = localStorage.getItem("hour-12");
+$("#hour-12 .description").val(value12);
+
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
+
+var currentHour= moment().hours();
+
+if (currentHour>12) {
+   $("#hour-12").addClass("past")
+} else if (currentHour<12){
+   $("#hour-12").addClass("future")
+} else {
+   $("#hour-12").addClass("present")
+}
+
+var value1 = localStorage.getItem("hour-1");
+$("#hour-1 .description").val(value1);
+
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
+
+var currentHour= moment().hours();
+
+if (currentHour>13) {
+   $("#hour-1").addClass("past")
+} else if (currentHour<13){
+   $("#hour-1").addClass("future")
+} else {
+   $("#hour-1").addClass("present")
+}
+
+var value2 = localStorage.getItem("hour-2");
+$("#hour-2 .description").val(value2);
+
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
+
+var currentHour= moment().hours();
+
+if (currentHour>14) {
+   $("#hour-2").addClass("past")
+} else if (currentHour<14){
+   $("#hour-2").addClass("future")
+} else {
+   $("#hour-2").addClass("present")
+}
+
+var value3 = localStorage.getItem("hour-3");
+$("#hour-3 .description").val(value3);
+
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
+
+var currentHour= moment().hours();
+
+if (currentHour>15) {
+   $("#hour-3").addClass("past")
+} else if (currentHour<15){
+   $("#hour-3").addClass("future")
+} else {
+   $("#hour-3").addClass("present")
+}
+
+var value4 = localStorage.getItem("hour-4");
+$("#hour-4 .description").val(value4);
+
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
+
+var currentHour= moment().hours();
+
+if (currentHour>16) {
+   $("#hour-4").addClass("past")
+} else if (currentHour<16){
+   $("#hour-4").addClass("future")
+} else {
+   $("#hour-4").addClass("present")
+}
+
+var value5 = localStorage.getItem("hour-5");
+$("#hour-5 .description").val(value5);
+
+// use moment to set day
+// get appropriate class on text areas to represent past, present or future
+
+var currentHour= moment().hours();
+
+if (currentHour>17) {
+   $("#hour-5").addClass("past")
+} else if (currentHour<17){
+   $("#hour-5").addClass("future")
+} else {
+   $("#hour-5").addClass("present")
+}
